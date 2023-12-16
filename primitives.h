@@ -11,6 +11,7 @@ private:
 
 public:
     Vector1D(int cols);
+    Vector1D(std::vector<T>);
     Vector1D<T> operator+(Vector1D<T> &obj);
     T &operator[](int index);
     int size();

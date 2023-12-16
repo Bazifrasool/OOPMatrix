@@ -9,6 +9,14 @@ Vector1D<T>::Vector1D(int cols)
     }
 }
 template <typename T>
+Vector1D<T>::Vector1D(std::vector<T> incomingVector)
+{
+    for (int i = 0; i < incomingVector.size(); i++)
+    {
+        __vector.push_back(incomingVector[i]);
+    }
+}
+template <typename T>
 Vector1D<T>  Vector1D<T>::operator+(Vector1D<T> &obj)
 {
     Vector1D<T> result = Vector1D<T>(obj.size());
