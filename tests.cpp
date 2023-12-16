@@ -1,9 +1,9 @@
 #include "primitives.h"
 #include "linear_regression.h"
 #include "rapidcsv.h"
+using namespace std;
 int main()
 {
-    // Matrix<float> X = Matrix<float>(3, 3);
     // Vector1D<float> y = Vector1D<float>(3);
 
     // y[0] = 1;
@@ -30,7 +30,12 @@ int main()
     // std::cout << (y) << std::endl;
     rapidcsv::Document doc("Salary_Data.csv");
     Vector1D<float> X = doc.GetColumn<float>("YearsExperience");
-    Vector1D<float> Y = doc.GetColumn<float>("Salary");
-    std::cout<<X<<std::endl;
+    Matrix<float> Xn = Matrix<float>(doc.GetRowCount(), 2);
+    std::vector<std::string> cols_name = doc.GetColumnNames();
+    std::vector<std::string> rows_name = doc.GetRowNames();
+    for(auto i = 0 ; i < doc.GetRowCount();i++){
+        Xn[i] = doc.GetRow<float>(i);
+    }
+    std::cout<<Xn<<std::endl;
     return 0;
 }
