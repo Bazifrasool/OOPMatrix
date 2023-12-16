@@ -17,6 +17,7 @@ public:
     int size();
     friend std::ostream & operator<<(std::ostream &out, Vector1D<T> &data)
 {
+
     out << "| ";
     for (int i = 0; i < data.size(); i++)
     {
@@ -43,10 +44,12 @@ public:
 
     friend std::ostream &operator<<(std::ostream &out, Matrix<T> &data)
 {
+    out<<"---------------------------------"<<"\n";
     for (int i = 0; i < data.rows; i++)
     {
         out << data[i] << std::endl;
     }
+    out<<"---------------------------------"<<"\n";
     return out;
 }
 };

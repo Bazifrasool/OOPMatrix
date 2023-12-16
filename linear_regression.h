@@ -11,7 +11,7 @@ private:
     T bias;
 
 public:
-    linear_regression(int weights_dim, int result_dim);
+    linear_regression(int weights_dim);
     Vector1D<T> &fit(Matrix<T> &X, Vector1D<T> &y);
     Vector1D<T> &predict(Matrix<T> &X);
 };

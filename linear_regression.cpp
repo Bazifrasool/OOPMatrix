@@ -2,14 +2,13 @@
 #include "linear_regression.h"
 
 template <typename T>
-linear_regression<T>::linear_regression(int weights_dim, int result_dim) : weights(weights_dim), result(result_dim)
+linear_regression<T>::linear_regression(int weights_dim) : weights(weights_dim), result(weights_dim),bias(weights_dim)
 {
     this->weights = Vector1D<T>(weights_dim);
-    this->bias = 10;
-    this->weights[0] = 1;
-    this->weights[1] = 2;
-    this->weights[2] = 3;
-
+    this->bias = 0;
+    for (int i = 0 ; i <weights.size();i++){
+        weights[i]=1;
+    }
     return;
 }
 template <typename T>
@@ -21,6 +20,7 @@ template <typename T>
 Vector1D<T> & linear_regression<T>::predict(Matrix<T> &X)
 {
     // To be completed
+    
     result = X.dot_product(weights);
     for (int i = 0; i < result.size(); i++)
     {

@@ -86,7 +86,7 @@ Vector1D<T> & Matrix<T>::dot_product(Vector1D<T> vec)
             (*Result)[i] = (*Result)[i] + (__Matrix[i][j] * vec[j]);
         }
     }
-    return *Result;
+    return (*Result);
 }
 // prepare compiler for types of template required
 template class Matrix<float>;

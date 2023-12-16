@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    // Vector1D<float> y = Vector1D<float>(3);
+    // Vector1D<double> y = Vector1D<double>(3);
 
     // y[0] = 1;
     // y[1] = 2;
@@ -20,8 +20,8 @@ int main()
     // X[2][1] = 8;
     // X[2][2] = 9;
 
-    // Vector1D<float> result = Vector1D<float>(3);
-    // linear_regression<float> lr = linear_regression<float>(3, 3);
+    // Vector1D<double> result = Vector1D<double>(3);
+    // linear_regression<double> lr = linear_regression<double>(3, 3);
     // //test dot product , matrix and vector
     // result = lr.predict(X);
     // std::cout << result << std::endl;
@@ -29,14 +29,33 @@ int main()
     // y = y+y; // vector addition
     // std::cout << (y) << std::endl;
     
-    rapidcsv::Document doc("../Salary_Data.csv");
-    Vector1D<float> X = doc.GetColumn<float>("YearsExperience");
-    Matrix<float> Xn = Matrix<float>(doc.GetRowCount(), 2);
-    std::vector<std::string> cols_name = doc.GetColumnNames();
-    std::vector<std::string> rows_name = doc.GetRowNames();
-    for(auto i = 0 ; i < doc.GetRowCount();i++){
-        Xn[i] = doc.GetRow<float>(i);
+    // rapidcsv::Document doc("../Salary_Data.csv");
+    // Vector1D<double> X = doc.GetColumn<double>("YearsExperience");
+    // std::cout<<Xn<<std::endl;
+    rapidcsv::Document Xdoc("../Xtest.csv");
+    rapidcsv::Document Ydoc("../Ytest.csv");
+
+    Matrix<double> Xn = Matrix<double>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
+    Vector1D<double> y = Vector1D<double>(Ydoc.GetColumn<double>(0));
+    // Vector1D<double> weights = Vector1D<double>(6);
+
+    // weights[0] = 1;
+    // weights[1] = 1;
+    // weights[2] = 1;
+    // weights[3] = 1;
+    // weights[4] = 1;
+    // weights[5] = 1;
+
+    for(auto i = 0 ; i < Xdoc.GetRowCount();i++){
+        Xn[i] = Xdoc.GetRow<double>(i);
     }
-    std::cout<<Xn<<std::endl;
+
+
+    cout<<Xn<<endl;
+    cout<<y<<endl;
+    linear_regression<double> lr = linear_regression<double>(Xdoc.GetColumnCount());
+    cout<<lr.predict(Xn)<<endl;
+
+    
     return 0;
 }
