@@ -28,7 +28,8 @@ int main()
     // std::cout << X << std::endl;
     // y = y+y; // vector addition
     // std::cout << (y) << std::endl;
-    rapidcsv::Document doc("Salary_Data.csv");
+    
+    rapidcsv::Document doc("../Salary_Data.csv");
     Vector1D<float> X = doc.GetColumn<float>("YearsExperience");
     Matrix<float> Xn = Matrix<float>(doc.GetRowCount(), 2);
     std::vector<std::string> cols_name = doc.GetColumnNames();
