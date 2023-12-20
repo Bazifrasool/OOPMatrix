@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Set up CMake
-      uses: actions/setup-cmake@v2
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.14
       with:
-        cmake-version: '3.21.0'
+        cmake-version: '3.16.x'
 
     - name: Configure
       run: cmake -S . -B build
