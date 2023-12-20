@@ -20,6 +20,8 @@ jobs:
       uses: jwlawson/actions-setup-cmake@v1.14
       with:
         cmake-version: '3.16.x'
+    - name: list files
+      run: ls
 
     - name: Configure
       run: cmake -S . -B build
