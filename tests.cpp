@@ -37,6 +37,8 @@ int main()
 
     Matrix<double> Xn = Matrix<double>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
     Vector1D<double> y = Vector1D<double>(Ydoc.GetColumn<double>(0));
+    Vector1D<double> y_prime = Vector1D<double>(Ydoc.GetColumn<double>(0));
+    Vector1D<double> y_difference = Vector1D<double>(Ydoc.GetColumn<double>(0));
     // Vector1D<double> weights = Vector1D<double>(6);
 
     // weights[0] = 1;
@@ -55,6 +57,9 @@ int main()
     cout<<y<<endl;
     linear_regression<double> lr = linear_regression<double>(Xdoc.GetColumnCount());
     cout<<lr.predict(Xn)<<endl;
+    y_prime=lr.predict(Xn);
+    y_difference=(y-y_prime);
+
 
     
     return 0;

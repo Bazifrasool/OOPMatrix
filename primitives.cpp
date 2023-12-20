@@ -31,6 +31,20 @@ Vector1D<T>  Vector1D<T>::operator+(Vector1D<T> &obj)
     return result;
 }
 template <typename T>
+Vector1D<T>  Vector1D<T>::operator-(Vector1D<T> &obj)
+{
+    Vector1D<T> result = Vector1D<T>(obj.size());
+    if (obj.size() != this->size())
+    {
+        return result;
+    }
+    for (int i = 0; i < obj.size(); i++)
+    {
+        result[i] = this->__vector[i] - obj.__vector[i];
+    }
+    return result;
+}
+template <typename T>
 T & Vector1D<T>::operator[](int index)
 {
     if (index < __vector.size())
