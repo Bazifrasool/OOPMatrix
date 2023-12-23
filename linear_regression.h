@@ -11,9 +11,11 @@ private:
   T bestScore;
 
 public:
+  Vector1D<T> getWeights();
+  T getBias();
   linear_regression(int weights_dim);
-  Vector1D<T> &fit(Matrix<T> &X, Vector1D<T> &y,int iterations);
-  Vector1D<T> predict(Matrix<T>const &X) const;
-  Vector1D<T> cost(Vector1D<T> y,Vector1D<T> y_pred);
+  Vector1D<T> &fit(Matrix<T> &X, Vector1D<T> &y, int iterations);
+  Vector1D<T> predict(Matrix<T> const &X) const;
+  Vector1D<T> cost(Vector1D<T> y, Vector1D<T> y_pred);
 };
 #endif
