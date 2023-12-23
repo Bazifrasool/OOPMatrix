@@ -6,11 +6,15 @@ template <typename T> class linear_regression {
 private:
   Vector1D<T> weights;
   Vector1D<T> result;
+  Vector1D<T> best_weights;
+  T bestScore;
   T bias;
+  T best_bias;
 
 public:
   linear_regression(int weights_dim);
-  Vector1D<T> &fit(Matrix<T> &X, Vector1D<T> &y);
+  Vector1D<T> &fit(Matrix<T> &X, Vector1D<T> &y,int iterations);
   Vector1D<T> &predict(Matrix<T> &X);
+  Vector1D<T> cost(Vector1D<T> y,Vector1D<T> y_pred);
 };
 #endif

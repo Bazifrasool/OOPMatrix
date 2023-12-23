@@ -2,8 +2,6 @@
 #include "linear_regression.h"
 #include "rapidcsv.h"
 using namespace std;
-int main()
-{
     // Vector1D<double> y = Vector1D<double>(3);
 
     // y[0] = 1;
@@ -32,33 +30,22 @@ int main()
     // rapidcsv::Document doc("../Salary_Data.csv");
     // Vector1D<double> X = doc.GetColumn<double>("YearsExperience");
     // std::cout<<Xn<<std::endl;
-    rapidcsv::Document Xdoc("../Xtest.csv");
-    rapidcsv::Document Ydoc("../Ytest.csv");
+int main()
+{
+    rapidcsv::Document Xdoc("../Xarr.csv");
+    rapidcsv::Document Ydoc("../Yarr.csv");
 
-    Matrix<double> Xn = Matrix<double>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
-    Vector1D<double> y = Vector1D<double>(Ydoc.GetColumn<double>(0));
-    Vector1D<double> y_prime = Vector1D<double>(Ydoc.GetColumn<double>(0));
-    Vector1D<double> y_difference = Vector1D<double>(Ydoc.GetColumn<double>(0));
-    // Vector1D<double> weights = Vector1D<double>(6);
-
-    // weights[0] = 1;
-    // weights[1] = 1;
-    // weights[2] = 1;
-    // weights[3] = 1;
-    // weights[4] = 1;
-    // weights[5] = 1;
-
+    Matrix<float> Xn = Matrix<float>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
+    Vector1D<float> y = Vector1D<float>(Ydoc.GetColumn<float>(0));
     for(auto i = 0 ; i < Xdoc.GetRowCount();i++){
-        Xn[i] = Xdoc.GetRow<double>(i);
+        Xn[i] = Xdoc.GetRow<float>(i);
     }
 
-
-    cout<<Xn<<endl;
-    cout<<y<<endl;
-    linear_regression<double> lr = linear_regression<double>(Xdoc.GetColumnCount());
+    // cout<<Xn<<endl;
+    // cout<<y<<endl;
+    linear_regression<float> lr = linear_regression<float>(Xdoc.GetColumnCount());
     cout<<lr.predict(Xn)<<endl;
-    y_prime=lr.predict(Xn);
-    y_difference=(y-y_prime);
+    lr.fit(Xn,y,4000);
 
 
     

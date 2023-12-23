@@ -10,10 +10,13 @@ private:
 public:
   Vector1D(int cols);
   Vector1D(std::vector<T>);
-  Vector1D<T> operator+(Vector1D<T> &obj);
-  Vector1D<T> operator-(Vector1D<T> &obj);
-  T &operator[](int index);
-  int size();
+  T sum();
+  Vector1D<T> operator+(Vector1D<T> const& obj);
+  Vector1D<T> operator-(Vector1D<T> const& obj);
+  Vector1D<T> operator*(T const& scalar);
+  T &operator[](int const & index);
+  T const &operator[](int const & index) const ;
+  int size() const;
   friend std::ostream &operator<<(std::ostream &out, Vector1D<T> &data) {
 
     out << "| ";
@@ -33,9 +36,9 @@ public:
   int rows;
   int cols;
   Matrix(int rows, int cols);
-  Vector1D<T> &operator[](int row);
-
-  Vector1D<T> &dot_product(Vector1D<T> vec);
+  Vector1D<T> &operator[](int const & row);
+  Matrix<T> transpose();
+  Vector1D<T> dot_product(Vector1D<T> const &vec);
 
   friend std::ostream &operator<<(std::ostream &out, Matrix<T> &data) {
     out << "---------------------------------"
