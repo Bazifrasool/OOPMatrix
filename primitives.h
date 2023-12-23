@@ -17,7 +17,7 @@ public:
   T &operator[](int const & index);
   T const &operator[](int const & index) const ;
   int size() const;
-  friend std::ostream &operator<<(std::ostream &out, Vector1D<T> &data) {
+  friend std::ostream &operator<<(std::ostream &out, const Vector1D<T> &data){
 
     out << "| ";
     for (int i = 0; i < data.size(); i++) {
@@ -25,7 +25,7 @@ public:
     }
     out << std::endl;
     return out;
-  }
+}
 };
 
 template <typename T> class Matrix {
@@ -38,7 +38,7 @@ public:
   Matrix(int rows, int cols);
   Vector1D<T> &operator[](int const & row);
   Matrix<T> transpose();
-  Vector1D<T> dot_product(Vector1D<T> const &vec);
+  Vector1D<T> dot_product(Vector1D<T> const &vec)const;
 
   friend std::ostream &operator<<(std::ostream &out, Matrix<T> &data) {
     out << "---------------------------------"

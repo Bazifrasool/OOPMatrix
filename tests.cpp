@@ -35,17 +35,17 @@ int main()
     rapidcsv::Document Xdoc("../Xarr.csv");
     rapidcsv::Document Ydoc("../Yarr.csv");
 
-    Matrix<float> Xn = Matrix<float>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
-    Vector1D<float> y = Vector1D<float>(Ydoc.GetColumn<float>(0));
+    Matrix<double> Xn = Matrix<double>(Xdoc.GetRowCount(), Xdoc.GetColumnCount());
+    Vector1D<double> y = Vector1D<double>(Ydoc.GetColumn<double>(0));
     for(auto i = 0 ; i < Xdoc.GetRowCount();i++){
-        Xn[i] = Xdoc.GetRow<float>(i);
+        Xn[i] = Xdoc.GetRow<double>(i);
     }
 
     // cout<<Xn<<endl;
     // cout<<y<<endl;
-    linear_regression<float> lr = linear_regression<float>(Xdoc.GetColumnCount());
+    linear_regression<double> lr = linear_regression<double>(Xdoc.GetColumnCount());
     cout<<lr.predict(Xn)<<endl;
-    lr.fit(Xn,y,4000);
+    lr.fit(Xn,y,2000);
 
 
     

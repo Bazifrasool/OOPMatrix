@@ -85,7 +85,7 @@ Matrix<T> Matrix<T>::transpose() {
   return TransposedMatrix;
 }
 
-template <typename T> Vector1D<T> Matrix<T>::dot_product(Vector1D<T> const &vec) {
+template <typename T> Vector1D<T> Matrix<T>::dot_product(Vector1D<T> const &vec) const {
   Vector1D<T> Result = Vector1D<T>(rows);
   if (vec.size() != this->cols) {
     return Result;

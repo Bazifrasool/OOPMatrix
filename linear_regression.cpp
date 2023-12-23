@@ -3,7 +3,7 @@
 
 template <typename T>
 linear_regression<T>::linear_regression(int weights_dim)
-    : weights(weights_dim), result(weights_dim),best_weights(weights_dim) {
+    : weights(weights_dim),best_weights(weights_dim) {
   this->weights = Vector1D<T>(weights_dim);
   this->bias = 0;
   for (int i = 0; i < weights.size(); i++) {
@@ -22,7 +22,7 @@ Vector1D<T> linear_regression<T>::cost(Vector1D<T> y,Vector1D<T> y_pred) {
   // To be completed
   Vector1D<T> temp = y-y_pred;
   for (int i = 0 ; i < temp.size();i++){
-    temp[i]+=temp[i]*temp[i];
+    temp[i]=temp[i]*temp[i];
   }
   return temp;
 
@@ -43,9 +43,11 @@ Vector1D<T> &linear_regression<T>::fit(Matrix<T> &X, Vector1D<T> &y,int iteratio
   // std::cout<<predictions<<std::endl;
   // std::cout<<"Start of old weight Vector"<<std::endl;
   // std::cout<<weights<<std::endl;
-  weights = weights - ((X.transpose().dot_product(predictions-y)) *
-                       ((T)LEARNING_RATE / ((T)y.size())));
-  bias = bias - (LEARNING_RATE*((y - predictions).sum())/(T)y.size());
+  Vector1D<T> difference = predictions-y;
+  Matrix<T> Transpose_X =X.transpose();
+  T factor =  ((T)LEARNING_RATE / ((T)y.size()));
+  weights = weights - (Transpose_X.dot_product(difference)) * factor;
+  bias = bias - (difference.sum()* factor);
   std::cout<<"Start of predictions Vector"<<std::endl;
   std::cout<<weights<<std::endl;
   std::cout<<"Start of best Vector"<<std::endl;
@@ -55,9 +57,9 @@ Vector1D<T> &linear_regression<T>::fit(Matrix<T> &X, Vector1D<T> &y,int iteratio
 
   return weights;
 }
-template <typename T> Vector1D<T> &linear_regression<T>::predict(Matrix<T> &X) {
+template <typename T> Vector1D<T> linear_regression<T>::predict(Matrix<T>const &X) const {
   // To be completed
-
+  Vector1D<T> result = Vector1D<T>(X.rows);
   result = X.dot_product(weights);
   for (int i = 0; i < result.size(); i++) {
     result[i] = result[i] + bias;
