@@ -1,9 +1,9 @@
 <h1>A library to implement ML algorithms from scratch</h1>
-<h4>These are not production ready, just for learning purpose</h4>
+<h4>These are not production ready, just for learning ML and OOP in C++</h4>
+<h5>Uses RapidCSV for testing </h5> 
 
-Uses RapidCSV 
-
-"
+<br>
+<hr>
 BSD 3-Clause License
 
 Copyright (c) 2017, Kristofer Berggren
